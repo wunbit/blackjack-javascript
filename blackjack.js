@@ -45,6 +45,18 @@ newGameButton.addEventListener('click', function() {
   showStatus();
 })
 
+hitButton.addEventListener('click', function () {
+  playerCards.push(getNextCard());
+  checkForEndOfGame();
+  showStatus();
+});
+
+stayButton.addEventListener('click', function () {
+  gameOver = true;
+  checkForEndOfGame();
+  showStatus();
+});
+
 function createDeck() {
   let deck = [];
   for (let suitIdx = 0; suitIdx < suits.length; suitIdx++) {
@@ -120,6 +132,10 @@ function getScore(cardArray) {
 function updateScores() {
   dealerScore = getScore(dealerCards);
   playerScore = getScore(playerCards);
+}
+
+function checkForEndOfGame() {
+  // TODO
 }
 
 function showStatus() {
