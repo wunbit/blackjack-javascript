@@ -43,15 +43,15 @@ newGameButton.addEventListener('click', function() {
   hitButton.style.display = 'inline';
   stayButton.style.display = 'inline';
   showStatus();
-})
+});
 
-hitButton.addEventListener('click', function () {
+hitButton.addEventListener('click', function() {
   playerCards.push(getNextCard());
   checkForEndOfGame();
   showStatus();
 });
 
-stayButton.addEventListener('click', function () {
+stayButton.addEventListener('click', function() {
   gameOver = true;
   checkForEndOfGame();
   showStatus();
@@ -71,7 +71,7 @@ function createDeck() {
   return deck;
 }
 
-function shuffleDeck (deck) {
+function shuffleDeck(deck) {
   for (let i = 0; i < deck.length; i++) {
     let swapIdx = Math.trunc(Math.random() * deck.length);
     let tmp = deck[swapIdx];
@@ -80,7 +80,7 @@ function shuffleDeck (deck) {
   }
 }
 
-function getCardString (card) {
+function getCardString(card) {
   return card.value + ' of ' + card.suit;
 }
 
@@ -138,15 +138,19 @@ function checkForEndOfGame() {
   updateScores();
 
   if(gameOver) {
-    // let dealer take a cards
+    // let dealer take cards
     while (dealerScore < playerScore && playerScore <= 21 && dealerScore <= 21) {
       dealerCards.push(getNextCard());
-      updateScores;
+      updateScores();
     }
   }
 
   if (playerScore > 21) {
     playerWon = false;
+    gameOver = true;
+  }
+  else if (playerScore === 21) {
+    playerWon = true;
     gameOver = true;
   }
   else if (dealerScore > 21) {
